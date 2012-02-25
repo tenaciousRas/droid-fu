@@ -281,6 +281,18 @@ public class ImageLoader implements Runnable {
     protected byte[] retrieveImageData() throws IOException {
         URL url = new URL(imageUrl);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        // follow redirects isn't working so roll our own
+        int redirectThreshold = 5;
+        for (int i = 0; i < redirectThreshold; i++) {
+            if (200 == connection.getResponseCode()) {
+                break;
+            }
+            if (301 == connection.getResponseCode() || 302 == connection.getResponseCode()) {
+                String redirUrl = connection.getHeaderField("Location");
+                url = new URL(redirUrl);
+                connection = (HttpURLConnection) url.openConnection();
+            }
+        }
 
         // determine the image size and allocate a buffer
         int fileSize = connection.getContentLength();
