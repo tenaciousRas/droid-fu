@@ -4,6 +4,11 @@ This is a forked version of Droid-Fu that provides a modularized Maven build.  I
 code into your Android application, you can pick and choose the modules you want.  Eventually there will also
 be a goal/target to build all the JARs, so you can still obtain the full Droid-Fu JAR if you want.
 
+# NOTE
+The original project that spawned this fork has been deprecated in favor of Ignite for Android.  I'll be continuing to
+maintain this project because I don't want to use custom views for background image loading and want to take the concept
+of an Android Helper project in a different direction than just about everything I've used so far.
+
 # Just looking for the API docs?
 
 You can find them [here](http://kaeppler.github.com/droid-fu).
